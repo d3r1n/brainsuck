@@ -3,6 +3,25 @@
 	Brainfuck but not really... like... a better version of it.
 </div>
 
+<h1>Installation</h1>
+
+Requirements:
+
+- Rust version 1.50 or higher
+
+<h2>Linux</h2>
+
+```bash
+curl https://raw.githubusercontent.com/d3r1n/brainsuck/master/install.sh | bash
+```
+
+<h2>Windows</h2>
+
+- Clone the repository
+- cd into `bs_bin`
+- run `cargo build --release`
+- generated binary will be in `target/release` (binary name: bs_bin)
+
 <h2>Usage:</h2>
 
 <h3>Help</h3>
