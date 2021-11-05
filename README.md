@@ -3,8 +3,6 @@
 	Brainfuck but not really... like... a better version of it.
 </div>
 
----
-
 <h2>Usage:</h2>
 
 <h3>Help</h3>
