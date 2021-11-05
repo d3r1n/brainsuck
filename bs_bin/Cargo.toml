@@ -1,0 +1,13 @@
+[package]
+name = "bs_bin"
+version = "0.1.0"
+edition = "2021"
+
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+clap = "2.33.3"
+colored = "2.0.0"
+bs_lib = {path = "../bs_lib"}
