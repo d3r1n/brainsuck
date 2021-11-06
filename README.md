@@ -33,8 +33,14 @@ brainsuck [-h, --help]
 <h3>Execute</h3>
 
 ```bash
-brainsuck <INPUT FILE> <MEMORY SIZE> <POINTER LOCATION>
+brainsuck <INPUT FILE> [OPTIONS]
 ```
+
+<h4>Options</h4>
+
+- **[-m, --mem-size]:** Sets the program's memory size. 			(default: 1024)
+- **[-p, --ptr-loc]:** Sets the program's memory pointer location. 	(default: 512)
+- **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
 
 ---
 
