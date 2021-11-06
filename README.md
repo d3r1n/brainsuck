@@ -80,5 +80,6 @@ brainsuck <INPUT FILE> [OPTIONS]
 <h2>TODO:</h2>
 
 - [X]   Add basic brainfuck commands.
-- [ ]   Add automatic memory allocation.
+- [X]   Add automatic memory allocation.
+- [ ]	Add repl
 - [ ]   Add lots of custom commands and features.
