@@ -11,7 +11,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
 	by the interpreter
 */
 
-pub fn Parse(opcodes: Vec<OpCode>) -> Vec<Instruction> {
+pub fn Parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
 	let mut program		: Vec<Instruction> 	= Vec::new();
 	let mut loop_start	: usize 			= 0;
 	let mut loop_stack	: i32 				= 0;
@@ -33,7 +33,7 @@ pub fn Parse(opcodes: Vec<OpCode>) -> Vec<Instruction> {
 				},
 				
 				OpCode::LoopEnd => {
-					BrainsuckError::throw_error(format!("Loop ending at {} has no beginning", i), BrainsuckErrorType::SyntaxError);
+					BrainsuckError::throw_error(format!("Loop ending at {} has no beginning", i), BrainsuckErrorType::SyntaxError, !repl_mode);
 					None
 				}
 			};
@@ -52,7 +52,7 @@ pub fn Parse(opcodes: Vec<OpCode>) -> Vec<Instruction> {
 					loop_stack -= 1;
 
 					if loop_stack == 0 {
-						program.push(Instruction::Loop(Parse(opcodes[loop_start + 1..i].to_vec())));
+						program.push(Instruction::Loop(Parse(opcodes[loop_start + 1..i].to_vec(), repl_mode)));
 					}
 				},
 
@@ -62,7 +62,7 @@ pub fn Parse(opcodes: Vec<OpCode>) -> Vec<Instruction> {
 	}
 
 	if loop_stack != 0 {
-		BrainsuckError::throw_error(format!("Loop starting at {} has no beginning", loop_start), BrainsuckErrorType::SyntaxError);
+		BrainsuckError::throw_error(format!("Loop starting at {} has no beginning", loop_start + 1), BrainsuckErrorType::SyntaxError, !repl_mode);
 	}
 
 	return program;

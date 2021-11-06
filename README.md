@@ -27,13 +27,19 @@ curl https://raw.githubusercontent.com/d3r1n/brainsuck/master/install.sh | bash
 <h3>Help</h3>
 
 ```bash
-brainsuck [-h, --help]
+$ brainsuck [-h, --help]
+```
+
+<h3>Interactive Shell</h3>
+
+```bash
+$ brainsuck
 ```
 
 <h3>Execute</h3>
 
 ```bash
-brainsuck <INPUT FILE> [OPTIONS]
+$ brainsuck <INPUT FILE> [OPTIONS]
 ```
 
 <h4>Options</h4>
@@ -43,6 +49,22 @@ brainsuck <INPUT FILE> [OPTIONS]
 - **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
 
 ---
+
+<h2>Versions History</h2>
+
+- **v2.0** *[Next]*
+	* Adding custom keywords and functions to the brainsuck
+- **v1.5** *[Now]*
+	* Added **Interactive Shell** (Main Feature) `see Usage ^`
+	* More bug fixes
+- **v1.2** *[Previous]*
+	* Automatic Memory Allocation (Main Feature)
+	* New way of argument handling
+	* Some bug fixes
+- **v1.0**
+	* Initial Verison of Brainsuck
+
+--
 
 <h2>Some screenshots:</h2>
 
@@ -81,5 +103,5 @@ brainsuck <INPUT FILE> [OPTIONS]
 
 - [X]   Add basic brainfuck commands.
 - [X]   Add automatic memory allocation.
-- [ ]	Add repl
+- [X]	Add repl
 - [ ]   Add lots of custom commands and features.

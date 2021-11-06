@@ -1,11 +1,16 @@
 extern crate clap;
 use clap::{Arg, App};
-
+use colored::{Colorize};
 
 use bs_lib;
 use bs_lib::utils::{BrainsuckError, BrainsuckErrorType, BrainsuckMessage, BrainsuckMessageType};
+
+use std::io;
+use std::io::Write;
 use std::io::Read;
 use std::fs::File;
+
+use crate::repl::Repl;
 
 pub fn handle() {
     let matches = App::new("Brainsuck")
@@ -43,18 +48,22 @@ pub fn handle() {
 		.get_matches();
 
     if matches.value_of("INPUT") == None {
-        println!("Not implemented yet!")
+		
+		print!("\n{}\n-------------------------------------\nType \"{}\" or press CTRL + C to exit\n-------------------------------------\n\n", "Brainsuck Interactive Shell".bright_green(), "quit".bright_magenta());
+
+		Repl();
+
     } else {
         let mut file = File::open(matches.value_of("INPUT").unwrap())
-		.map_err(|err| BrainsuckError::throw_error(format!("Can't find input file '{}'", matches.value_of("INPUT").unwrap()), BrainsuckErrorType::FileNotFoundError));
+		.map_err(|err| BrainsuckError::throw_error(format!("Can't find input file '{}'", matches.value_of("INPUT").unwrap()), BrainsuckErrorType::FileNotFoundError, true));
 
         let mut src = String::new();
 
         file.unwrap().read_to_string(&mut src)
-		.map_err(|err| BrainsuckError::throw_error(format!("Can't read the input file '{}'", matches.value_of("INPUT").unwrap()), BrainsuckErrorType::CantReadFileError));
+		.map_err(|err| BrainsuckError::throw_error(format!("Can't read the input file '{}'", matches.value_of("INPUT").unwrap()), BrainsuckErrorType::CantReadFileError, true));
 
         let ops = bs_lib::lexer::Lex(src);
-        let program = bs_lib::parser::Parse(ops);
+        let program = bs_lib::parser::Parse(ops, false);
 
 		let mem_str = matches.value_of("mem-size").unwrap_or("1024");
 		let mem_size = mem_str.parse::<usize>().unwrap();
@@ -71,6 +80,6 @@ pub fn handle() {
         let mut memory: Vec<u8> = vec![0; mem_size];
         let mut memory_pointer: usize = ptr_loc;
 
-        bs_lib::interpreter::Interpret(&program, &mut memory, &mut memory_pointer, auto_alloc)
+        bs_lib::interpreter::Interpret(&program, &mut memory, &mut memory_pointer, auto_alloc, false)
     }
 }

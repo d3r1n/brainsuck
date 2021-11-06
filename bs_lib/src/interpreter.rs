@@ -3,7 +3,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
 
 use std::io::{self, Read};
 
-pub fn Interpret(instructions: &Vec<Instruction>, memory: &mut Vec<u8>, memory_pointer: &mut usize, auto_alloc: bool) {
+pub fn Interpret(instructions: &Vec<Instruction>, memory: &mut Vec<u8>, memory_pointer: &mut usize, auto_alloc: bool, repl_mode: bool) {
 
 	for inst in instructions {
 		
@@ -12,7 +12,7 @@ pub fn Interpret(instructions: &Vec<Instruction>, memory: &mut Vec<u8>, memory_p
 				memory.resize(memory.len() + 512, 0);
 			}
 			else {
-				BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError);
+				BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, repl_mode);
 			}
 		}
 
@@ -21,20 +21,27 @@ pub fn Interpret(instructions: &Vec<Instruction>, memory: &mut Vec<u8>, memory_p
 			Instruction::DecrementPointer 	=> *memory_pointer -= 1,
 			Instruction::Increment 			=> memory[*memory_pointer] += 1,
 			Instruction::Decrement 			=> memory[*memory_pointer] -= 1,
-			Instruction::Write				=> print!("{}", memory[*memory_pointer] as char),
+			Instruction::Write				=> {
+				if repl_mode {
+					print!("\n{}\n\n", memory[*memory_pointer] as char)
+				}
+				else {
+					print!("{}", memory[*memory_pointer] as char)
+				}
+			},
 			Instruction::Read				=> {
 				let mut input_byte: [u8; 1] = [0; 1];
 
 				match io::stdin().read_exact(&mut input_byte) {
 					Ok(()) => (),
-					Err(e) => BrainsuckError::throw_error("Can't read input form stdin".to_owned(), BrainsuckErrorType::IOError)				
+					Err(e) => BrainsuckError::throw_error("Can't read input form stdin".to_owned(), BrainsuckErrorType::IOError, repl_mode)				
 				}
 
 				memory[*memory_pointer] = input_byte[0];
 			},
 			Instruction::Loop(loop_instructions) => {
 				while memory[*memory_pointer] != 0 {
-					Interpret(&loop_instructions, memory, memory_pointer, true)
+					Interpret(&loop_instructions, memory, memory_pointer, true, false)
 				}
 			}
 		}

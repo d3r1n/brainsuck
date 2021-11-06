@@ -34,14 +34,14 @@ impl BrainsuckError {
 			BrainsuckErrorType::IOError => String::from("IO Error"),
 		};
 
-		let short_msg= format!("\n{}\n---------\nError [{}]\n\nMessage: {}\n\nExiting...\n", "Brainsuck".bright_green(), err_type.bright_cyan(), &self.Message.bright_yellow()).bright_red();
-		io::stdout().write(short_msg.as_bytes()).unwrap();
+		let short_msg= format!("\n{}\n---------\nError [{}]\n\nMessage: {}\n\n", "Brainsuck".bright_green(), err_type.bright_cyan(), &self.Message.bright_yellow()).bright_red();
+		io::stdout().lock().write(short_msg.as_bytes()).unwrap();
 	}
 
-	pub fn throw_error(message: String, err_type: BrainsuckErrorType) {
+	pub fn throw_error(message: String, err_type: BrainsuckErrorType, do_exit: bool) {
 		let new_error = BrainsuckError::new(message, err_type);
 		new_error.display();
-		exit(1);
+		if do_exit {exit(1);}
 	}
 }
 
@@ -69,7 +69,7 @@ impl BrainsuckMessage {
 		};
 
 		let short_msg= format!("\n{}\n---------\nType: [{}]\n\nMessage: {}\n\n", "Brainsuck".bright_green(), message_type.bright_cyan(), &self.Message.bright_yellow()).bright_red();
-		io::stdout().write(short_msg.as_bytes()).unwrap();
+		io::stdout().lock().write(short_msg.as_bytes()).unwrap();
 	}
 
 	pub fn throw_message(message: String, message_type: BrainsuckMessageType) {
