@@ -44,3 +44,36 @@ impl BrainsuckError {
 		exit(1);
 	}
 }
+
+
+pub struct BrainsuckMessage {
+	Message: 	String,
+	MessageType: BrainsuckMessageType,
+}
+
+pub enum BrainsuckMessageType {
+	Notification
+}
+
+impl BrainsuckMessage {
+	pub fn new(message: String, message_type: BrainsuckMessageType) -> BrainsuckMessage {
+		return BrainsuckMessage {
+			Message: message,
+			MessageType: message_type,
+		}
+	}
+
+	pub fn display(&self) {
+		let message_type: String = match &self.MessageType {
+			BrainsuckMessageType::Notification => String::from("Notification"),
+		};
+
+		let short_msg= format!("\n{}\n---------\nType: [{}]\n\nMessage: {}\n\n", "Brainsuck".bright_green(), message_type.bright_cyan(), &self.Message.bright_yellow()).bright_red();
+		io::stdout().write(short_msg.as_bytes()).unwrap();
+	}
+
+	pub fn throw_message(message: String, message_type: BrainsuckMessageType) {
+		let new_error = BrainsuckMessage::new(message, message_type);
+		new_error.display();
+	}
+}

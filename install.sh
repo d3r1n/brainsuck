@@ -4,7 +4,7 @@ cd ./brainsuck/bs_bin
 
 cargo build --release
 
-sudo mv ./target/release/bs_bin /usr/bin/brainsuck
+sudo mv ./target/release/bs_bin $HOME/.local/bin/brainsuck
 
 printf "Building finished...\nCleaning...\n"
 

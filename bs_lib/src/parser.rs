@@ -13,7 +13,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
 
 pub fn Parse(opcodes: Vec<OpCode>) -> Vec<Instruction> {
 	let mut program		: Vec<Instruction> 	= Vec::new();
-	let mut loop_start	: usize 				= 0;
+	let mut loop_start	: usize 			= 0;
 	let mut loop_stack	: i32 				= 0;
 
 	for (i, op) in opcodes.iter().enumerate() {
