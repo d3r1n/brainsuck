@@ -52,12 +52,12 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 
 <h2>Versions History</h2>
 
-- **v2.0** *[Next]*
+- **v3.0** *[Next]*
 	* Adding custom keywords and functions to the brainsuck
-- **v1.5** *[Now]*
+- **v2.0** *[Now]*
 	* Added **Interactive Shell** (Main Feature) `see Usage ^`
 	* More bug fixes
-- **v1.2** *[Previous]*
+- **v1.5** *[Previous]*
 	* Automatic Memory Allocation (Main Feature)
 	* New way of argument handling
 	* Some bug fixes
