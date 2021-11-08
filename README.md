@@ -105,3 +105,9 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - [X]   Add automatic memory allocation.
 - [X]	Add repl
 - [ ]   Add lots of custom commands and features.
+
+---
+
+<h2>Mentions:</h2>
+
+> [SpongeBed81](https://github.com/SpongeBed81) with his language [Yearlight](https://github.com/SpongeBed81/yearlight)
