@@ -45,7 +45,7 @@ pub fn Parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
 				None => ()
 			}
 		}
-		else { //
+		else {
 			match op {
 				OpCode::LoopBegin => loop_stack += 1,
 				OpCode::LoopEnd => {

@@ -20,25 +20,25 @@ pub fn Interpret(instructions: &Vec<Instruction>, memory: &mut Vec<u8>, memory_p
 			Instruction::IncrementPointer 	=> {
 				match memory.get(*memory_pointer + 1) {
 					Some(v) => *memory_pointer += 1,
-					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, repl_mode)
+					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, !repl_mode)
 				}
 			},
 			Instruction::DecrementPointer 	=> {
 				match memory.get(*memory_pointer - 1) {
 					Some(v) => *memory_pointer -= 1,
-					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, repl_mode)
+					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, !repl_mode)
 				}
 			},
 			Instruction::Increment 			=> {
 				match memory.get(*memory_pointer - 1) {
 					Some(v) => memory[*memory_pointer] += 1,
-					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, repl_mode)
+					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, !repl_mode)
 				}
 			},
 			Instruction::Decrement 			=> {
 				match memory.get(*memory_pointer - 1) {
 					Some(v) => memory[*memory_pointer] -= 1,
-					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, repl_mode)
+					None => BrainsuckError::throw_error("Memory overflow!\nHelp: Give program more memory.".to_owned(), BrainsuckErrorType::MemoryError, !repl_mode)
 				}
 			},
 			Instruction::Write				=> {
