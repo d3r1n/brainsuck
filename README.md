@@ -48,8 +48,6 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - **[-p, --ptr-loc]:** Sets the program's memory pointer location. 	(default: 512)
 - **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
 
----
-
 <h2>Versions History</h2>
 
 - **v3.0** *[Next]*
@@ -63,8 +61,6 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 	* Some bug fixes
 - **v1.0**
 	* Initial Verison of Brainsuck
-
---
 
 <h2>Some screenshots:</h2>
 
