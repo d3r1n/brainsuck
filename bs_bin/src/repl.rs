@@ -1,39 +1,41 @@
 use bs_lib::{
-	interpreter::Interpret,
-	lexer::Lex,
-	parser::Parse,
-	utils::{BrainsuckMessage, BrainsuckMessageType},
+    interpreter::Interpret,
+    lexer::Lex,
+    parser::Parse,
+    utils::{BrainsuckMessage, BrainsuckMessageType},
 };
 
-use colored::{Colorize};
+use colored::Colorize;
 
 use std::io::{BufRead, BufReader, Write};
 
-use std::{process::exit, io};
+use std::{io, process::exit};
 
 pub fn Repl() {
-	loop {
+    loop {
+        let input = get_input(">>> ").unwrap();
 
-		let input = get_input(">>> ").unwrap();
+        if input.is_empty() {
+            continue;
+        } else if input == "quit" {
+            exit(0);
+        } else if input == "clear" {
+            print!("{esc}c", esc = 27 as char);
+            print!("\n{}\n-------------------------------------\nType \"{}\" or press CTRL + C to exit\n-------------------------------------\n\n", "Brainsuck Interactive Shell".bright_green(), "quit".bright_magenta());
+            continue;
+        }
 
-		if input.is_empty() {
-			continue;
-		}
-		else if input == "quit" {
-			exit(0);
-		}
-		else if input == "clear" {
-			print!("{esc}c", esc = 27 as char);
-			print!("\n{}\n-------------------------------------\nType \"{}\" or press CTRL + C to exit\n-------------------------------------\n\n", "Brainsuck Interactive Shell".bright_green(), "quit".bright_magenta());
-			continue;
-		}
+        let mut memory: Vec<u8> = vec![0; 1024];
+        let mut memory_pointer: usize = 512;
 
-		let mut memory: Vec<u8> = vec![0; 1024];
-		let mut memory_pointer: usize = 512;
-
-		Interpret(&Parse(Lex(input), true), &mut memory, &mut memory_pointer, true, true)
-		
-	}
+        Interpret(
+            &Parse(Lex(input), true),
+            &mut memory,
+            &mut memory_pointer,
+            true,
+            true,
+        )
+    }
 }
 
 fn get_input(prompt: &str) -> io::Result<String> {
