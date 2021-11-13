@@ -4,8 +4,8 @@ use std::io::Write;
 use std::process::exit;
 
 pub struct BrainsuckError {
-    Message: String,
-    ErrorType: BrainsuckErrorType,
+    message: String,
+    error_type: BrainsuckErrorType,
 }
 
 pub enum BrainsuckErrorType {
@@ -20,13 +20,13 @@ pub enum BrainsuckErrorType {
 impl BrainsuckError {
     pub fn new(message: String, error_type: BrainsuckErrorType) -> BrainsuckError {
         return BrainsuckError {
-            Message: message,
-            ErrorType: error_type,
+            message,
+            error_type,
         };
     }
 
     pub fn display(&self) {
-        let err_type: String = match &self.ErrorType {
+        let err_type: String = match &self.error_type {
             BrainsuckErrorType::FileNotFoundError => String::from("File Not Found"),
             BrainsuckErrorType::CantReadFileError => String::from("Cant Read File"),
             BrainsuckErrorType::SyntaxError => String::from("Syntax Error"),
@@ -38,7 +38,7 @@ impl BrainsuckError {
             "\n{}\n---------\nError [{}]\n\nMessage: {}\n\n",
             "Brainsuck".bright_green(),
             err_type.bright_cyan(),
-            &self.Message.bright_yellow()
+            &self.message.bright_yellow()
         )
         .bright_red();
         io::stdout().lock().write(short_msg.as_bytes()).unwrap();
@@ -54,8 +54,8 @@ impl BrainsuckError {
 }
 
 pub struct BrainsuckMessage {
-    Message: String,
-    MessageType: BrainsuckMessageType,
+    message: String,
+    message_type: BrainsuckMessageType,
 }
 
 pub enum BrainsuckMessageType {
@@ -65,13 +65,13 @@ pub enum BrainsuckMessageType {
 impl BrainsuckMessage {
     pub fn new(message: String, message_type: BrainsuckMessageType) -> BrainsuckMessage {
         return BrainsuckMessage {
-            Message: message,
-            MessageType: message_type,
+            message,
+            message_type,
         };
     }
 
     pub fn display(&self) {
-        let message_type: String = match &self.MessageType {
+        let message_type: String = match &self.message_type {
             BrainsuckMessageType::Notification => String::from("Notification"),
         };
 
@@ -79,7 +79,7 @@ impl BrainsuckMessage {
             "\n{}\n---------\nType: [{}]\n\nMessage: {}\n\n",
             "Brainsuck".bright_green(),
             message_type.bright_cyan(),
-            &self.Message.bright_yellow()
+            &self.message.bright_yellow()
         )
         .bright_red();
         io::stdout().lock().write(short_msg.as_bytes()).unwrap();

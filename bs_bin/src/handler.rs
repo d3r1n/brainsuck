@@ -10,7 +10,7 @@ use std::io;
 use std::io::Read;
 use std::io::Write;
 
-use crate::repl::Repl;
+use crate::repl::repl;
 
 pub fn handle() {
     let matches = App::new("Brainsuck")
@@ -50,7 +50,7 @@ pub fn handle() {
     if matches.value_of("INPUT") == None {
         print!("\n{}\n-------------------------------------\nType \"{}\" or press CTRL + C to exit\n-------------------------------------\n\n", "Brainsuck Interactive Shell".bright_green(), "quit".bright_magenta());
 
-        Repl();
+        repl();
     } else {
         let mut file = File::open(matches.value_of("INPUT").unwrap()).map_err(|err| {
             BrainsuckError::throw_error(
@@ -76,8 +76,8 @@ pub fn handle() {
             )
         });
 
-        let ops = bs_lib::lexer::Lex(src);
-        let program = bs_lib::parser::Parse(ops, false);
+        let ops = bs_lib::lexer::lex(src);
+        let program = bs_lib::parser::parse(ops, false);
 
         let mem_str = matches.value_of("mem-size").unwrap_or("1024");
         let mem_size = mem_str.parse::<usize>().unwrap();
@@ -97,7 +97,7 @@ pub fn handle() {
         let mut memory: Vec<u8> = vec![0; mem_size];
         let mut memory_pointer: usize = ptr_loc;
 
-        bs_lib::interpreter::Interpret(
+        bs_lib::interpreter::interpret(
             &program,
             &mut memory,
             &mut memory_pointer,

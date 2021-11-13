@@ -8,7 +8,7 @@ use crate::types::OpCode;
     to a Vector of OpCodes.
 */
 
-pub fn Lex(source: String) -> Vec<OpCode> {
+pub fn lex(source: String) -> Vec<OpCode> {
     let mut operations: Vec<OpCode> = Vec::new();
 
     let chars: Vec<char> = source.chars().collect();
