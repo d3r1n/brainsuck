@@ -1,9 +1,4 @@
-use bs_lib::{
-    interpreter::interpret,
-    lexer::lex,
-    parser::parse,
-    utils::{BrainsuckMessage, BrainsuckMessageType},
-};
+use bs_lib::{interpreter::interpret, lexer::lex, parser::parse};
 
 use colored::Colorize;
 

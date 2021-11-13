@@ -42,11 +42,8 @@ pub fn parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
                 }
             };
 
-            match inst {
-                Some(inst) => {
-                    program.push(inst);
-                }
-                None => (),
+            if let Some(inst) = inst {
+                program.push(inst);
             }
         } else {
             match op {
@@ -75,5 +72,5 @@ pub fn parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
         );
     }
 
-    return program;
+    program
 }

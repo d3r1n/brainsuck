@@ -1,4 +1,4 @@
-use colored::{Color, Colorize};
+use colored::Colorize;
 use std::io;
 use std::io::Write;
 use std::process::exit;
@@ -19,10 +19,10 @@ pub enum BrainsuckErrorType {
 
 impl BrainsuckError {
     pub fn new(message: String, error_type: BrainsuckErrorType) -> BrainsuckError {
-        return BrainsuckError {
+        BrainsuckError {
             message,
             error_type,
-        };
+        }
     }
 
     pub fn display(&self) {
@@ -41,7 +41,7 @@ impl BrainsuckError {
             &self.message.bright_yellow()
         )
         .bright_red();
-        io::stdout().lock().write(short_msg.as_bytes()).unwrap();
+        io::stdout().lock().write_all(short_msg.as_bytes()).unwrap();
     }
 
     pub fn throw_error(message: String, err_type: BrainsuckErrorType, do_exit: bool) {
@@ -64,10 +64,10 @@ pub enum BrainsuckMessageType {
 
 impl BrainsuckMessage {
     pub fn new(message: String, message_type: BrainsuckMessageType) -> BrainsuckMessage {
-        return BrainsuckMessage {
+        BrainsuckMessage {
             message,
             message_type,
-        };
+        }
     }
 
     pub fn display(&self) {
@@ -82,7 +82,7 @@ impl BrainsuckMessage {
             &self.message.bright_yellow()
         )
         .bright_red();
-        io::stdout().lock().write(short_msg.as_bytes()).unwrap();
+        io::stdout().lock().write_all(short_msg.as_bytes()).unwrap();
     }
 
     pub fn throw_message(message: String, message_type: BrainsuckMessageType) {

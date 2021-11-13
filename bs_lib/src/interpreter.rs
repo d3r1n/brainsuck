@@ -4,7 +4,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
 use std::io::{self, Read};
 
 pub fn interpret(
-    instructions: &Vec<Instruction>,
+    instructions: &[Instruction],
     memory: &mut Vec<u8>,
     memory_pointer: &mut usize,
     auto_alloc: bool,
@@ -79,7 +79,7 @@ pub fn interpret(
             }
             Instruction::Loop(loop_instructions) => {
                 while memory[*memory_pointer] != 0 {
-                    interpret(&loop_instructions, memory, memory_pointer, true, false)
+                    interpret(loop_instructions, memory, memory_pointer, true, false)
                 }
             }
         }
