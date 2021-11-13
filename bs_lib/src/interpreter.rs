@@ -3,7 +3,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
 
 use std::io::{self, Read};
 
-pub fn Interpret(
+pub fn interpret(
     instructions: &Vec<Instruction>,
     memory: &mut Vec<u8>,
     memory_pointer: &mut usize,
@@ -25,7 +25,7 @@ pub fn Interpret(
 
         match inst {
             Instruction::IncrementPointer => match memory.get(*memory_pointer + 1) {
-                Some(v) => *memory_pointer += 1,
+                Some(_v) => *memory_pointer += 1,
                 None => BrainsuckError::throw_error(
                     "Memory overflow!\nHelp: Give program more memory.".to_owned(),
                     BrainsuckErrorType::MemoryError,
@@ -33,7 +33,7 @@ pub fn Interpret(
                 ),
             },
             Instruction::DecrementPointer => match memory.get(*memory_pointer - 1) {
-                Some(v) => *memory_pointer -= 1,
+                Some(_v) => *memory_pointer -= 1,
                 None => BrainsuckError::throw_error(
                     "Memory overflow!\nHelp: Give program more memory.".to_owned(),
                     BrainsuckErrorType::MemoryError,
@@ -41,7 +41,7 @@ pub fn Interpret(
                 ),
             },
             Instruction::Increment => match memory.get(*memory_pointer - 1) {
-                Some(v) => memory[*memory_pointer] += 1,
+                Some(_v) => memory[*memory_pointer] += 1,
                 None => BrainsuckError::throw_error(
                     "Memory overflow!\nHelp: Give program more memory.".to_owned(),
                     BrainsuckErrorType::MemoryError,
@@ -49,7 +49,7 @@ pub fn Interpret(
                 ),
             },
             Instruction::Decrement => match memory.get(*memory_pointer - 1) {
-                Some(v) => memory[*memory_pointer] -= 1,
+                Some(_v) => memory[*memory_pointer] -= 1,
                 None => BrainsuckError::throw_error(
                     "Memory overflow!\nHelp: Give program more memory.".to_owned(),
                     BrainsuckErrorType::MemoryError,
@@ -68,7 +68,7 @@ pub fn Interpret(
 
                 match io::stdin().read_exact(&mut input_byte) {
                     Ok(()) => (),
-                    Err(e) => BrainsuckError::throw_error(
+                    Err(_e) => BrainsuckError::throw_error(
                         "Can't read input form stdin".to_owned(),
                         BrainsuckErrorType::IOError,
                         repl_mode,
@@ -79,7 +79,7 @@ pub fn Interpret(
             }
             Instruction::Loop(loop_instructions) => {
                 while memory[*memory_pointer] != 0 {
-                    Interpret(&loop_instructions, memory, memory_pointer, true, false)
+                    interpret(&loop_instructions, memory, memory_pointer, true, false)
                 }
             }
         }

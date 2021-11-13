@@ -1,7 +1,7 @@
 use bs_lib::{
-    interpreter::Interpret,
-    lexer::Lex,
-    parser::Parse,
+    interpreter::interpret,
+    lexer::lex,
+    parser::parse,
     utils::{BrainsuckMessage, BrainsuckMessageType},
 };
 
@@ -11,7 +11,7 @@ use std::io::{BufRead, BufReader, Write};
 
 use std::{io, process::exit};
 
-pub fn Repl() {
+pub fn repl() {
     loop {
         let input = get_input(">>> ").unwrap();
 
@@ -28,8 +28,8 @@ pub fn Repl() {
         let mut memory: Vec<u8> = vec![0; 1024];
         let mut memory_pointer: usize = 512;
 
-        Interpret(
-            &Parse(Lex(input), true),
+        interpret(
+            &parse(lex(input), true),
             &mut memory,
             &mut memory_pointer,
             true,
