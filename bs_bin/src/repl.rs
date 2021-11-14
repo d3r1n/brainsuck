@@ -1,9 +1,4 @@
-use bs_lib::{
-    interpreter::interpret,
-    lexer::lex,
-    parser::parse,
-    utils::{BrainsuckMessage, BrainsuckMessageType},
-};
+use bs_lib::{interpreter::interpret, lexer::lex, parser::parse};
 
 use colored::Colorize;
 
@@ -29,7 +24,7 @@ pub fn repl() {
         let mut memory_pointer: usize = 512;
 
         interpret(
-            &parse(lex(input), true),
+            &parse(&lex(input), true),
             &mut memory,
             &mut memory_pointer,
             true,

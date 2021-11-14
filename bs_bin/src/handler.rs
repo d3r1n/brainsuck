@@ -2,13 +2,10 @@ extern crate clap;
 use clap::{App, Arg};
 use colored::Colorize;
 
-use bs_lib;
 use bs_lib::utils::{BrainsuckError, BrainsuckErrorType, BrainsuckMessage, BrainsuckMessageType};
 
 use std::fs::File;
-use std::io;
 use std::io::Read;
-use std::io::Write;
 
 use crate::repl::repl;
 
@@ -52,7 +49,7 @@ pub fn handle() {
 
         repl();
     } else {
-        let mut file = File::open(matches.value_of("INPUT").unwrap()).map_err(|err| {
+        let file = File::open(matches.value_of("INPUT").unwrap()).map_err(|_err| {
             BrainsuckError::throw_error(
                 format!(
                     "Can't find input file '{}'",
@@ -65,19 +62,22 @@ pub fn handle() {
 
         let mut src = String::new();
 
-        file.unwrap().read_to_string(&mut src).map_err(|err| {
-            BrainsuckError::throw_error(
-                format!(
-                    "Can't read the input file '{}'",
-                    matches.value_of("INPUT").unwrap()
-                ),
-                BrainsuckErrorType::CantReadFileError,
-                true,
-            )
-        });
+        file.unwrap()
+            .read_to_string(&mut src)
+            .map_err(|_err| {
+                BrainsuckError::throw_error(
+                    format!(
+                        "Can't read the input file '{}'",
+                        matches.value_of("INPUT").unwrap()
+                    ),
+                    BrainsuckErrorType::CantReadFileError,
+                    true,
+                )
+            })
+            .unwrap();
 
         let ops = bs_lib::lexer::lex(src);
-        let program = bs_lib::parser::parse(ops, false);
+        let program = bs_lib::parser::parse(&ops, false);
 
         let mem_str = matches.value_of("mem-size").unwrap_or("1024");
         let mem_size = mem_str.parse::<usize>().unwrap();

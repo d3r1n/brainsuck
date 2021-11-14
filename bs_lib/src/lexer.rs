@@ -27,13 +27,12 @@ pub fn lex(source: String) -> Vec<OpCode> {
             _ => None,
         };
 
-        match op {
-            Some(op) => operations.push(op),
-            None => (),
+        if let Some(op) = op {
+            operations.push(op);
         }
 
-        current_char = current_char + 1;
+        current_char += 1;
     }
 
-    return operations;
+    operations
 }
