@@ -11,7 +11,7 @@ use crate::utils::{BrainsuckError, BrainsuckErrorType};
     by the interpreter
 */
 
-pub fn parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
+pub fn parse(opcodes: &[OpCode], repl_mode: bool) -> Vec<Instruction> {
     let mut program: Vec<Instruction> = Vec::new();
     let mut loop_start: usize = 0;
     let mut loop_stack: i32 = 0;
@@ -53,7 +53,7 @@ pub fn parse(opcodes: Vec<OpCode>, repl_mode: bool) -> Vec<Instruction> {
 
                     if loop_stack == 0 {
                         program.push(Instruction::Loop(parse(
-                            opcodes[loop_start + 1..i].to_vec(),
+                            &opcodes[loop_start + 1..i],
                             repl_mode,
                         )));
                     }

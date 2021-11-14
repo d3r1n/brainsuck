@@ -24,7 +24,7 @@ pub fn repl() {
         let mut memory_pointer: usize = 512;
 
         interpret(
-            &parse(lex(input), true),
+            &parse(&lex(input), true),
             &mut memory,
             &mut memory_pointer,
             true,
