@@ -1,6 +1,6 @@
 git clone https://github.com/d3r1n/brainsuck
 
-cd ./brainsuck/bs_bin
+cd ./brainsuck
 
 cargo build --release
 
