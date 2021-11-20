@@ -1,0 +1,8 @@
+[workspace]
+members = [
+	"bs_lib",
+	"bs_bin"
+]
+
+[profile.release]
+opt-level = 3

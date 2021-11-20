@@ -17,8 +17,7 @@ curl https://raw.githubusercontent.com/d3r1n/brainsuck/master/install.sh | bash
 
 <h2>Windows</h2>
 
-- Clone the repository
-- cd into `bs_bin`
+- Clone the repository and cd into it
 - run `cargo build --release`
 - generated binary will be in `target/release` (binary name: bs_bin)
 
