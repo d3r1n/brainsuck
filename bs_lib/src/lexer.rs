@@ -8,14 +8,11 @@ use crate::types::OpCode;
     to a Vector of OpCodes.
 */
 
-pub fn lex(source: String) -> Vec<OpCode> {
+pub fn lex(source: &str) -> Vec<OpCode> {
     let mut operations: Vec<OpCode> = Vec::new();
 
-    let chars: Vec<char> = source.chars().collect();
-    let mut current_char: usize = 0;
-
-    while current_char < chars.len() {
-        let op = match chars[current_char] {
+    for current_char in source.chars() {
+        let op = match current_char {
             '>' => Some(OpCode::IncrementPointer),
             '<' => Some(OpCode::DecrementPointer),
             '+' => Some(OpCode::Increment),
@@ -30,8 +27,6 @@ pub fn lex(source: String) -> Vec<OpCode> {
         if let Some(op) = op {
             operations.push(op);
         }
-
-        current_char += 1;
     }
 
     operations

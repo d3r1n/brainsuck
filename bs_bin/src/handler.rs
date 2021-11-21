@@ -76,7 +76,7 @@ pub fn handle() {
             })
             .unwrap();
 
-        let ops = bs_lib::lexer::lex(src);
+        let ops = bs_lib::lexer::lex(&src);
         let program = bs_lib::parser::parse(&ops, false);
 
         let mem_str = matches.value_of("mem-size").unwrap_or("1024");
