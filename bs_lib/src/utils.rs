@@ -26,12 +26,12 @@ impl BrainsuckError {
     }
 
     pub fn display(&self) {
-        let err_type: String = match &self.error_type {
-            BrainsuckErrorType::FileNotFoundError => String::from("File Not Found"),
-            BrainsuckErrorType::CantReadFileError => String::from("Cant Read File"),
-            BrainsuckErrorType::SyntaxError => String::from("Syntax Error"),
-            BrainsuckErrorType::MemoryError => String::from("Memory Overflow"),
-            BrainsuckErrorType::IOError => String::from("IO Error"),
+        let err_type = match self.error_type {
+            BrainsuckErrorType::FileNotFoundError => "File Not Found",
+            BrainsuckErrorType::CantReadFileError => "Cant Read File",
+            BrainsuckErrorType::SyntaxError => "Syntax Error",
+            BrainsuckErrorType::MemoryError => "Memory Overflow",
+            BrainsuckErrorType::IOError => "IO Error",
         };
 
         let short_msg = format!(
@@ -71,8 +71,8 @@ impl BrainsuckMessage {
     }
 
     pub fn display(&self) {
-        let message_type: String = match &self.message_type {
-            BrainsuckMessageType::Notification => String::from("Notification"),
+        let message_type = match self.message_type {
+            BrainsuckMessageType::Notification => "Notification",
         };
 
         let short_msg = format!(
