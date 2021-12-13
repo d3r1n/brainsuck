@@ -32,7 +32,7 @@ pub fn interpret(
                     !repl_mode,
                 ),
             },
-            Instruction::DecrementPointer => match memory.get(*memory_pointer - 1) {
+            Instruction::DecrementPointer => match memory.get(*memory_pointer + 1) {
                 Some(_v) => *memory_pointer -= 1,
                 None => BrainsuckError::throw_error(
                     "Memory overflow!\nHelp: Give program more memory.".to_owned(),
