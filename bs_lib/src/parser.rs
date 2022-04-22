@@ -1,38 +1,36 @@
-use crate::types::Instruction;
-use crate::types::OpCode;
-use crate::utils::{BrainsuckError, BrainsuckErrorType};
+use crate::{types::{OpCode as Op, Instruction as I}, utils::{BrainsuckError, BrainsuckErrorType}};
 
 /*
-    Parser
-    ------
+	Parser
+	------
 
-    Turns Opcodes to
-    Instructions that can be used
-    by the interpreter
+	Turns a Vector of Ops
+	to a Vector of Statements.
+
 */
 
-pub fn parse(opcodes: &[OpCode], repl_mode: bool) -> Vec<Instruction> {
-    let mut program: Vec<Instruction> = Vec::new();
+pub fn parse(opcodes: &[Op], repl_mode: &bool) -> Vec<I> {
+    let mut program: Vec<I> = Vec::new();
     let mut loop_start: usize = 0;
     let mut loop_stack: i32 = 0;
 
     for (i, op) in opcodes.iter().enumerate() {
         if loop_stack == 0 {
             let inst = match op {
-                OpCode::IncrementPointer => Some(Instruction::IncrementPointer),
-                OpCode::DecrementPointer => Some(Instruction::DecrementPointer),
-                OpCode::Increment => Some(Instruction::Increment),
-                OpCode::Decrement => Some(Instruction::Decrement),
-                OpCode::Write => Some(Instruction::Write),
-                OpCode::Read => Some(Instruction::Read),
+                Op::IncrementPointer => Some(I::IncrementPointer),
+                Op::DecrementPointer => Some(I::DecrementPointer),
+                Op::Add => Some(I::Add),
+                Op::Subtract => Some(I::Subtract),
+                Op::Write => Some(I::Write),
+                Op::Read => Some(I::Read),
 
-                OpCode::LoopBegin => {
+                Op::LoopBegin => {
                     loop_start = i;
                     loop_stack += 1;
                     None
                 }
 
-                OpCode::LoopEnd => {
+                Op::LoopEnd => {
                     BrainsuckError::throw_error(
                         format!("Loop ending at {} has no beginning", i),
                         BrainsuckErrorType::SyntaxError,
@@ -47,12 +45,12 @@ pub fn parse(opcodes: &[OpCode], repl_mode: bool) -> Vec<Instruction> {
             }
         } else {
             match op {
-                OpCode::LoopBegin => loop_stack += 1,
-                OpCode::LoopEnd => {
+                Op::LoopBegin => loop_stack += 1,
+                Op::LoopEnd => {
                     loop_stack -= 1;
 
                     if loop_stack == 0 {
-                        program.push(Instruction::Loop(parse(
+                        program.push(I::Loop(parse(
                             &opcodes[loop_start + 1..i],
                             repl_mode,
                         )));

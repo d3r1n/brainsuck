@@ -1,39 +1,30 @@
-/*
-    Operation Codes
-    ---------------
 
-    Normal Brainfuck opcodes
-    and extra Brainsuck opcodes
-*/
-
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum OpCode {
-    IncrementPointer,
-    DecrementPointer,
-    Increment,
-    Decrement,
-    Write,
-    Read,
-    LoopBegin,
-    LoopEnd,
-    // Comment,
+	IncrementPointer,
+	DecrementPointer,
+	Add,
+	Subtract,
+	Write,
+	Read,
+	LoopBegin,
+	LoopEnd,
 }
 
 /*
-    Instructions
-    ------------
+	Instructions
+	------------
 
-    Normal Brainfuck Instructions
-    and extra Brainsuck Instructions
+	Optimized Brainfuck Instructions
+	and extra Brainsuck Instructions
 */
-
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Instruction {
-    IncrementPointer,
-    DecrementPointer,
-    Increment,
-    Decrement,
-    Write,
-    Read,
-    Loop(Vec<Instruction>),
+	IncrementPointer,
+	DecrementPointer,
+	Add,
+	Subtract,
+	Write,
+	Read,
+	Loop(Vec<Instruction>),
 }

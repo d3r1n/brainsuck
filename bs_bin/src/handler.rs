@@ -2,7 +2,17 @@ extern crate clap;
 use clap::{App, Arg};
 use colored::Colorize;
 
-use bs_lib::utils::{BrainsuckError, BrainsuckErrorType, BrainsuckMessage, BrainsuckMessageType};
+use bs_lib::{
+	utils::*,
+	lexer::lex,
+	parser::parse,
+	interpreter::interpret,
+	optimizer::{
+		lexer::optimized_lex,
+		parser::optimized_parse,
+		interpreter::optimized_interpret,
+	}
+};
 
 use std::fs::File;
 use std::io::Read;
@@ -42,6 +52,13 @@ pub fn handle() {
                 .multiple(false)
                 .help("If enabled, program will automatically allocate memory size"),
         )
+		.arg(
+            Arg::with_name("optimize")
+                .short("o")
+                .long("optimize")
+                .multiple(false)
+                .help("If enabled, program will optimize the application to make it faster"),
+        )
         .get_matches();
 
     if matches.value_of("INPUT") == None {
@@ -76,9 +93,6 @@ pub fn handle() {
             })
             .unwrap();
 
-        let ops = bs_lib::lexer::lex(&src);
-        let program = bs_lib::parser::parse(&ops, false);
-
         let mem_str = matches.value_of("mem-size").unwrap_or("1024");
         let mem_size = mem_str.parse::<usize>().unwrap();
 
@@ -86,6 +100,10 @@ pub fn handle() {
         let ptr_loc = ptr_str.parse::<usize>().unwrap();
 
         let auto_alloc = matches.is_present("auto");
+		let optimize = matches.is_present("optimize");
+
+		let mut memory: Vec<u8> = vec![0; mem_size];
+		let mut memory_pointer: usize = ptr_loc;
 
         if auto_alloc {
             BrainsuckMessage::throw_message(
@@ -94,15 +112,29 @@ pub fn handle() {
             );
         }
 
-        let mut memory: Vec<u8> = vec![0; mem_size];
-        let mut memory_pointer: usize = ptr_loc;
+		if !optimize {
+			let ops = lex(&src);
+			let program = parse(&ops, &false);
 
-        bs_lib::interpreter::interpret(
-            &program,
-            &mut memory,
-            &mut memory_pointer,
-            auto_alloc,
-            false,
-        )
+			interpret(
+				&program,
+				&mut memory,
+				&mut memory_pointer,
+				false,
+				auto_alloc,
+			)
+		} else {
+			let tokens = optimized_lex(&src);
+			let program = optimized_parse(&tokens, &false);
+
+			optimized_interpret(
+				&program,
+				&mut memory,
+				&mut memory_pointer,
+				false,
+				auto_alloc,
+			)
+		}
+		
     }
 }

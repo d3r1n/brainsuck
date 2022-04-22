@@ -46,15 +46,23 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - **[-m, --mem-size]:** Sets the program's memory size. 			(default: 1024)
 - **[-p, --ptr-loc]:** Sets the program's memory pointer location. 	(default: 512)
 - **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
+- **[-o, --optimize]:** Optimize the Parser and Interpreter 		(default: 1024)
 
 <h2>Versions History</h2>
 
 - **v3.0** *[Next]*
-	* Adding custom keywords and functions to the brainsuck
-- **v2.0** *[Now]*
+	* Adding more functionality and more keywords (Main Feature)
+	* Adding a compiler based on LLVM (Main Feature)
+	* Adding a transpiler to C and Rust (Main Feature)
+	* Adding JiT compilation (Main Feature)
+- **v2.5** *[Now]*
+	* Optimized the Parser and Interpreter (Main Feature)
+	* Improved speed (3x-100x times faster optimized) (Main Feature)
+	* Bug fixes
+- **v2.0** *[Previous]*
 	* Added **Interactive Shell** (Main Feature) `see Usage ^`
 	* More bug fixes
-- **v1.5** *[Previous]*
+- **v1.5**
 	* Automatic Memory Allocation (Main Feature)
 	* New way of argument handling
 	* Some bug fixes
@@ -91,6 +99,7 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 
 <h3>Memory Overflow Errors</h3>
 <img src="./assets/memory_overflow.png" alt="">
+<img src="./assets/neg_ptr.png" alt="">
 
 ---
 
@@ -99,7 +108,11 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - [X]   Add basic brainfuck commands.
 - [X]   Add automatic memory allocation.
 - [X]	Add repl
-- [ ]   Add lots of custom commands and features.
+- [ ]   Add optimization
+- [ ]   Add custom keywords
+- [ ]   Add macros
+- [ ]   Add a compiler
+- [ ]   Add a JiT compiler
 
 ---
 

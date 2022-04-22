@@ -51,6 +51,15 @@ impl BrainsuckError {
             exit(1);
         }
     }
+
+	pub fn throw_error_with_help(message: String, help: String, err_type: BrainsuckErrorType, do_exit: bool) {
+        let new_error = BrainsuckError::new(message, err_type);
+        new_error.display();
+		println!("{}: {}", "Help".bright_green(), help.bright_yellow());
+        if do_exit {
+            exit(1);
+        }
+    }
 }
 
 pub struct BrainsuckMessage {

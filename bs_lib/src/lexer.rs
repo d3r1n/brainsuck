@@ -15,8 +15,8 @@ pub fn lex(source: &str) -> Vec<OpCode> {
         let op = match current_char {
             '>' => Some(OpCode::IncrementPointer),
             '<' => Some(OpCode::DecrementPointer),
-            '+' => Some(OpCode::Increment),
-            '-' => Some(OpCode::Decrement),
+            '+' => Some(OpCode::Add),
+            '-' => Some(OpCode::Subtract),
             '.' => Some(OpCode::Write),
             ',' => Some(OpCode::Read),
             '[' => Some(OpCode::LoopBegin),
