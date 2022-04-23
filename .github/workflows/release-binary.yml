@@ -25,5 +25,5 @@ jobs:
           RUSTTARGET: ${{ matrix.target }}
           ARCHIVE_TYPES: ${{ matrix.archive }}
           TOOLCHAIN_VERSION: 2021
-          SRC_DIR: "/src"
-          EXTRA_FILES: "/examples"
+          SRC_DIR: "src"
+          EXTRA_FILES: "README.md LICENSE examples/hello_world.bs examples/mandelbrot_set.bs examples/factorial.bs"
