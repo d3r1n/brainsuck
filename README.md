@@ -9,17 +9,19 @@
 
 Pre-build binaries can be found in [releases](https://github.com/d3r1n/brainsuck/releases/)
 
+<h2>Manual</h2>
+
 Requirements:
 
 - Rust version 1.50 or higher
 
-<h2>Linux</h2>
+<h3>Linux</h3>
 
 ```bash
 curl https://raw.githubusercontent.com/d3r1n/brainsuck/master/install.sh | bash
 ```
 
-<h2>Windows</h2>
+<h3>Windows</h3>
 
 - Clone the repository and cd into it
 - run `cargo build --release`
