@@ -24,5 +24,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUSTTARGET: ${{ matrix.target }}
           ARCHIVE_TYPES: ${{ matrix.archive }}
-          TOOLCHAIN_VERSION: 2021
           EXTRA_FILES: "README.md LICENSE examples/hello_world.bs examples/mandelbrot_set.bs examples/factorial.bs"
