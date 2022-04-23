@@ -52,7 +52,7 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - **[-m, --mem-size]:** Sets the program's memory size. 			(default: 1024)
 - **[-p, --ptr-loc]:** Sets the program's memory pointer location. 	(default: 512)
 - **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
-- **[-o, --optimize]:** Optimize the Parser and Interpreter 		(default: 1024)
+- **[-o, --optimize]:** Optimize the Parser and Interpreter 		(default: false)
 
 <h2>Versions History</h2>
 
