@@ -6,6 +6,7 @@
 <h1>Installation</h1>
 
 <h2>Pre-build</h2>
+
 Pre-build binaries can be found in [releases](https://github.com/d3r1n/brainsuck/releases/)
 
 Requirements:
