@@ -114,7 +114,7 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - [X]   Add basic brainfuck commands.
 - [X]   Add automatic memory allocation.
 - [X]	Add repl
-- [ ]   Add optimization
+- [x]   Add optimization
 - [ ]   Add custom keywords
 - [ ]   Add macros
 - [ ]   Add a compiler
