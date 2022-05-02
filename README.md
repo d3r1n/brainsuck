@@ -1,15 +1,18 @@
-<div align="center">
-	<h1>Brainsuck</h1>
-	Brainfuck but not really... like... a better version of it.
+
+<h1 align=center>Brainsuck</h1>
+
+<p align=center>Brainfuck but not really... like, a better version of it.</p>
+
+<div align=center>
+	<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/d3r1n/brainsuck/total?color=%235caef2&label=downloads&logo=github&style=for-the-badge">
+	<img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/d3r1n/brainsuck?style=for-the-badge">
 </div>
 
-<h1>Installation</h1>
+<h2>Install</h2>
 
-<h2>Pre-build</h2>
+Pre-build binaries with examples can be found in [releases](https://github.com/d3r1n/brainsuck/releases/)
 
-Pre-build binaries can be found in [releases](https://github.com/d3r1n/brainsuck/releases/)
-
-<h2>Manual</h2>
+<h2>Build</h2>
 
 Requirements:
 
@@ -29,19 +32,19 @@ curl https://raw.githubusercontent.com/d3r1n/brainsuck/master/install.sh | bash
 
 <h2>Usage:</h2>
 
-<h3>Help</h3>
+<h4>Help</h4>
 
 ```bash
 $ brainsuck [-h, --help]
 ```
 
-<h3>Interactive Shell</h3>
+<h4>Interactive Shell</h4>
 
 ```bash
 $ brainsuck
 ```
 
-<h3>Execute</h3>
+<h4>Execute</h4>
 
 ```bash
 $ brainsuck <INPUT FILE> [OPTIONS]
@@ -75,11 +78,7 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - **v1.0**
 	* Initial Verison of Brainsuck
 
-<h2>Some screenshots:</h2>
-
-<h3>Programs:</h3>
-
----
+<h2>Programs:</h3>
 
 <h3>Hello, World!</h3>
 <img src="./assets/hello_world.png" alt="">
@@ -93,9 +92,7 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 
 </details>
 
-<h3>Errors</h3>
-
----
+<h2>Errors</h2>
 
 <h3>File Not Found</h3>
 <img src="./assets/file_not_found.png" alt="">
@@ -107,8 +104,6 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 <img src="./assets/memory_overflow.png" alt="">
 <img src="./assets/neg_ptr.png" alt="">
 
----
-
 <h2>TODO:</h2>
 
 - [X]   Add basic brainfuck commands.
@@ -118,10 +113,11 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - [ ]   Add custom keywords
 - [ ]   Add macros
 - [ ]   Add a compiler
+- [ ]   Add transpiler
 - [ ]   Add a JiT compiler
 
 ---
 
-<h2>Mentions:</h2>
+<h4>Mentions:</h4>
 
 > [SpongeBed81](https://github.com/SpongeBed81) with his language [Yearlight](https://github.com/SpongeBed81/yearlight)
