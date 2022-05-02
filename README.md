@@ -42,6 +42,7 @@ $ brainsuck [-h, --help]
 
 ```bash
 $ brainsuck
+$ brainsuck [-o, --optimize]
 ```
 
 <h4>Execute</h4>
