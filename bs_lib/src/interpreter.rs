@@ -4,11 +4,12 @@ use crate::{
 };
 use std::{io::{self, Read}, vec};
 
+// Appends the memory for given amount
 pub fn alloc(memory: &mut Vec<u8>, amount: usize) {
 	memory.resize(memory.len() + amount, 0);
 }
 
-
+// Interpreter: Runs the program
 pub fn interpret(instructions: &Vec<I>, memory: &mut Vec<u8>, pointer: &mut usize, repl_mode: bool, auto_allocate: bool) {
 	
 	for (_idx, instr) in instructions.iter().enumerate() {
@@ -31,6 +32,7 @@ pub fn interpret(instructions: &Vec<I>, memory: &mut Vec<u8>, pointer: &mut usiz
 			}
 
 			I::DecrementPointer => if (*pointer as i32) - 1 < 0 {
+				// Throw an error if pointer is already at 0
 				BrainsuckError::throw_error_with_help(
 					"Memory pointer can't be negative".to_string(),
 					format!("Decrementing pointer by 1\nat pointer location {}", pointer),

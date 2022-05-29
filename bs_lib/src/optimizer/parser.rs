@@ -151,7 +151,6 @@ pub fn combine_tokens(tokens: &[Token]) -> Vec<Instruction> {
 mod tests {
     use crate::optimizer::types::Instruction as I;
 	use crate::optimizer::lexer::optimized_lex;
-	use std::{fs::File, io::Read};
 
     #[test]
     fn test_parser() {
@@ -171,16 +170,5 @@ mod tests {
 				])]
 			)
 		])
-	}
-
-	#[test]
-	fn test_with_mandelbrot() {
-		// read file to source variable
-		let mut file = File::open("/home/d3r1n/Desktop/brainsuck/examples/mandelbrot_set.bs").unwrap();
-		let mut contents = String::new();
-		file.read_to_string(&mut contents).unwrap();
-		let tokens = optimized_lex(&contents);
-		let result = super::optimized_parse(&tokens, &true);
-		println!("{:?}", result);
 	}
 }

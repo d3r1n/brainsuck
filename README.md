@@ -1,16 +1,17 @@
 
-<h1 align=center>Brainsuck</h1>
+<h1 align=center>Brainsuck [WIP]</h1>
 
 <p align=center>Brainfuck but not really... like, a better version of it.</p>
 
 <div align=center>
 	<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/d3r1n/brainsuck/total?color=%235caef2&label=downloads&logo=github&style=for-the-badge">
-	<img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/d3r1n/brainsuck?style=for-the-badge">
+	<img alt="Status" src="https://img.shields.io/badge/STATUS-WIP-brightgreen?style=for-the-badge">
 </div>
 
 <h2>Install</h2>
 
-Pre-build binaries with examples can be found in [releases](https://github.com/d3r1n/brainsuck/releases/)
+Pre-build binaries with examples can be found in [releases](https://github.com/d3r1n/brainsuck/releases/) \
+To use Brainsuck's Compiler you'll need to have Rust version 1.50 or higher versions installed.
 
 <h2>Build</h2>
 
@@ -48,8 +49,15 @@ $ brainsuck [-o, --optimize]
 <h4>Execute</h4>
 
 ```bash
-$ brainsuck <INPUT FILE> [OPTIONS]
+$ brainsuck [OPTIONS] <INPUT FILE>
 ```
+
+<h4>Compile</h4>
+
+```bash
+$ brainsuck [-c, --compile] [OPTIONS] <INPUT FILE>
+```
+> Automatic allocation is not supported in compilation right now.
 
 <h4>Options</h4>
 
@@ -57,19 +65,26 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - **[-p, --ptr-loc]:** Sets the program's memory pointer location. 	(default: 512)
 - **[-a, --auto]:** Automatically allocates memory for the program. (default: false)
 - **[-o, --optimize]:** Optimize the Parser and Interpreter 		(default: false)
+- **[-c, --compile]:** Compile the program to a binary 				(default: false)
 
 <h2>Versions History</h2>
 
 - **v3.0** *[Next]*
 	* Adding more functionality and more keywords (Main Feature)
-	* Adding a compiler based on LLVM (Main Feature)
-	* Adding a transpiler to C and Rust (Main Feature)
-	* Adding JiT compilation (Main Feature)
-- **v2.5** *[Now]*
+	* Adding JiT compilation [LLVM] (Main Feature)
+	* Adding LLVM compilation (Main Feature)
+	* Adding support for debugging (Main Feature)
+	* Adding support for making system calls (Main Feature)
+	* Adding support for cross-platform compilation
+- **v2.75** *[Now]*
+	* Adding a compiler based on Rust (Main Feature) `see Usage ^`
+	* Minor bug fixes
+	* Re-structed the code
+- **v2.5** *[Previous]*
 	* Optimized the Parser and Interpreter (Main Feature)
 	* Improved speed (3x-100x times faster optimized) (Main Feature)
 	* Bug fixes
-- **v2.0** *[Previous]*
+- **v2.0**
 	* Added **Interactive Shell** (Main Feature) `see Usage ^`
 	* More bug fixes
 - **v1.5**
@@ -110,12 +125,15 @@ $ brainsuck <INPUT FILE> [OPTIONS]
 - [X]   Add basic brainfuck commands.
 - [X]   Add automatic memory allocation.
 - [X]	Add repl
-- [x]   Add optimization
+- [X]   Add optimization
+- [X]   Add Rust based compiler
+- [ ]   Add LLVM based compiler
+- [ ]   Add LLVM based JiT compiler
 - [ ]   Add custom keywords
-- [ ]   Add macros
-- [ ]   Add a compiler
-- [ ]   Add transpiler
-- [ ]   Add a JiT compiler
+- [ ]   Add support for debugging
+- [ ]   Add support for making system calls
+- [ ]   Add support for cross-platform compilation
+
 
 ---
 

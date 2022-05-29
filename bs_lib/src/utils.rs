@@ -10,7 +10,9 @@ pub struct BrainsuckError {
 
 pub enum BrainsuckErrorType {
     FileNotFoundError,
+	CantCreateFileError,
     CantReadFileError,
+	CompileError,
 
     SyntaxError,
     MemoryError,
@@ -28,7 +30,10 @@ impl BrainsuckError {
     pub fn display(&self) {
         let err_type = match self.error_type {
             BrainsuckErrorType::FileNotFoundError => "File Not Found",
+			BrainsuckErrorType::CantCreateFileError => "Can't Create File",
             BrainsuckErrorType::CantReadFileError => "Cant Read File",
+			BrainsuckErrorType::CompileError => "Compile Error",
+
             BrainsuckErrorType::SyntaxError => "Syntax Error",
             BrainsuckErrorType::MemoryError => "Memory Overflow",
             BrainsuckErrorType::IOError => "IO Error",

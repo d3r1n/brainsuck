@@ -4,8 +4,8 @@ use crate::optimizer::types::*;
     Lexer
     -----
 
-    Turns String based keywordss
-    to a Vector of Tokens.
+    Turns String based keywords
+    into a Vector of Tokens.
 */
 
 pub fn optimized_lex(source: &str) -> Vec<Token> {

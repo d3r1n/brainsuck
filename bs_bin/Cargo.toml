@@ -1,6 +1,6 @@
 [package]
 name = "bs_bin"
-version = "2.5.0"
+version = "2.75.0"
 edition = "2021"
 
 [dependencies]
