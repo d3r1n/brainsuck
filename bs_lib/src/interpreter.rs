@@ -12,7 +12,7 @@ pub fn alloc(memory: &mut Vec<u8>, amount: usize) {
 // Interpreter: Runs the program
 pub fn interpret(instructions: &Vec<I>, memory: &mut Vec<u8>, pointer: &mut usize, repl_mode: bool, auto_allocate: bool) {
 	
-	for (_idx, instr) in instructions.iter().enumerate() {
+	for instr in instructions.iter() {
 		match instr {
 			I::IncrementPointer => if *pointer + 1 > memory.len() - 1 {
 				if auto_allocate {
